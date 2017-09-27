@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Modelo.Cadastros;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Modelo.Tabelas
 {
     public class Categoria
     {
-        public int CategoriaId { get; set; }
+        public long? CategoriaId { get; set; }
 
         public string Nome { get; set; }
+
+        public virtual ICollection<Produto> Produto { get; set; }
     }
 }
