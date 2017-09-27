@@ -29,5 +29,9 @@ namespace Apresentacao.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Modelo.Tabelas.Categoria> Categorias { get; set; }
+
+        public System.Data.Entity.DbSet<Modelo.Cadastros.Produto> Produtoes { get; set; }
     }
 }

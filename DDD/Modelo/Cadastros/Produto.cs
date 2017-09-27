@@ -15,6 +15,10 @@ namespace Modelo.Cadastros
 
         public string Descricao { get; set; }
 
+        public long? CategoriaId { get; set; }
+
+        public long? FabricanteId { get; set; }
+
         public virtual Fabricante Fabricante { get; set; }
 
         public virtual Categoria Categoria { get; set; }

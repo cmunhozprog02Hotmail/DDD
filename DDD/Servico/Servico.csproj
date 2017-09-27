@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cadastros\FabricanteSetvico.cs" />
+    <Compile Include="Cadastros\FabricanteServico.cs" />
     <Compile Include="Cadastros\ProdutoServico.cs" />
     <Compile Include="Tabelas\CategoriaServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
