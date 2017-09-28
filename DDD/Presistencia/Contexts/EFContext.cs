@@ -1,5 +1,6 @@
 ﻿using Modelo.Cadastros;
 using Modelo.Tabelas;
+using Presistencia.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,8 +13,10 @@ namespace Presistencia.Contexts
 {
     public class EFContext : DbContext
     {
+        
         public EFContext() : base("DefaultConnection")
         {
+            Database.SetInitializer<EFContext>(new MigrateDatabaseToLatestVersion<EFContext, Configuration>());
         }
 
         public DbSet<Categoria> Categorias { get; set; }

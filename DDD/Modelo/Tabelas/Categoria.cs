@@ -9,6 +9,8 @@ namespace Modelo.Tabelas
 
         public string Nome { get; set; }
 
+        public string Observacao { get; set; }
+
         public virtual ICollection<Produto> Produto { get; set; }
     }
 }
