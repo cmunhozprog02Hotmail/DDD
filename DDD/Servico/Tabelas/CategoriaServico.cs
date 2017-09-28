@@ -1,10 +1,6 @@
 ﻿using Modelo.Tabelas;
 using Presistencia.DAL.Cadastros;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servico.Cadastros
 {
@@ -28,7 +24,7 @@ namespace Servico.Cadastros
 
         public Categoria EliminarCategoriaPorId(long id)
         {
-            return CategoriaDAL.ObterCategoriaPorId(id);
+            return CategoriaDAL.EliminarCategoriaPorId(id);
         }
     }
 }

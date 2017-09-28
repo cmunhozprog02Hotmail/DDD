@@ -1,9 +1,7 @@
-﻿using System.Data.Entity;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
 using Modelo.Cadastros;
 using Servico.Cadastros;
-using Modelo.Tabelas;
 
 namespace Apresentacao.Controllers
 {

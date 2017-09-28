@@ -1,10 +1,6 @@
 ﻿using Presistencia.DAL.Cadastros;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Modelo.Cadastros;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Servico.Cadastros
 {
