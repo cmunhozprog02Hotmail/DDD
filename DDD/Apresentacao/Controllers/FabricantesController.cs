@@ -8,32 +8,62 @@ using System.Web;
 using System.Web.Mvc;
 using Apresentacao.Models;
 using Modelo.Cadastros;
+using Servico.Cadastros;
 
 namespace Apresentacao.Controllers
 {
     public class FabricantesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private FabricanteServico fabricanteServico = new FabricanteServico();
 
-        // GET: Fabricantes
-        public ActionResult Index()
-        {
-            return View(db.Fabricantes.ToList());
-        }
-
-        // GET: Fabricantes/Details/5
-        public ActionResult Details(long? id)
+        // Para delete edit e details
+        private ActionResult ObterVisaoFabricantePorId(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fabricante fabricante = db.Fabricantes.Find(id);
+
+            Fabricante fabricante = fabricanteServico.ObterFabricantePorId((long)id);
             if (fabricante == null)
             {
                 return HttpNotFound();
             }
             return View(fabricante);
+        }
+
+        // HTTP Salvar
+        private ActionResult GravarFabricante(Fabricante fabricante)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //produtoServico.GravarProduto(produto);
+                    fabricanteServico.GravarFabricante(fabricante);
+                    return RedirectToAction("Index");
+                }
+                return View(fabricante);
+            }
+            catch
+            {
+                return View(fabricante);
+            }
+        }
+
+        // GET: Fabricantes
+        public ActionResult Index()
+        {
+            //return View(produtoServico.ObterProdutosClassificadosPorNome());
+            return View(fabricanteServico.ObterFabricantesClassificadosPorNome());
+        }
+
+        // GET: Fabricantes/Details/5
+        public ActionResult Details(long? id)
+        {
+            //return ObterVisaoProdutoPorId(id);
+            return ObterVisaoFabricantePorId(id);
         }
 
         // GET: Fabricantes/Create
@@ -51,9 +81,8 @@ namespace Apresentacao.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Fabricantes.Add(fabricante);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //return GravarProduto(produto);
+                return GravarFabricante(fabricante);
             }
 
             return View(fabricante);
@@ -62,16 +91,8 @@ namespace Apresentacao.Controllers
         // GET: Fabricantes/Edit/5
         public ActionResult Edit(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Fabricante fabricante = db.Fabricantes.Find(id);
-            if (fabricante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fabricante);
+            // return ObterVisaoProdutoPorId(id);
+            return ObterVisaoFabricantePorId(id);
         }
 
         // POST: Fabricantes/Edit/5
@@ -83,9 +104,7 @@ namespace Apresentacao.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fabricante).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return GravarFabricante(fabricante);
             }
             return View(fabricante);
         }
@@ -93,16 +112,8 @@ namespace Apresentacao.Controllers
         // GET: Fabricantes/Delete/5
         public ActionResult Delete(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Fabricante fabricante = db.Fabricantes.Find(id);
-            if (fabricante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fabricante);
+            //return ObterVisaoProdutoPorId(id);
+            return ObterVisaoFabricantePorId(id);
         }
 
         // POST: Fabricantes/Delete/5
@@ -110,17 +121,37 @@ namespace Apresentacao.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Fabricante fabricante = db.Fabricantes.Find(id);
-            db.Fabricantes.Remove(fabricante);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            /* try
+             {
+                 Produto produto = produtoServico.EliminarProdutoPorId(id);
+                 TempData["Message"] = "Produto " + produto.Nome.ToUpper() + " foi removido";
+                 return RedirectToAction("Index");
+
+             }
+             catch (System.Exception)
+             {
+
+                 throw;
+             }*/
+
+            try
+            {
+                Fabricante fabricante = fabricanteServico.EliminarFabricantePorId(id);
+                TempData["Message"] = "Produto " + fabricante.Nome.ToUpper() + " foi removido";
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

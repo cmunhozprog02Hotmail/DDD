@@ -12,6 +12,22 @@ namespace Servico.Cadastros
         {
             return fabricanteDAL.ObterFabricantesClassificadoPorNome();
         }
+        public Fabricante ObterFabricantePorId(long id)
+        {
+            return fabricanteDAL.ObterFabricantePorId(id);
+        }
+
+        public void GravarFabricante(Fabricante fabricante)
+        {
+            //produtoDAL.GravarProduto(produto);
+            fabricanteDAL.GravarFabricante(fabricante);
+        }
+
+        public Fabricante EliminarFabricantePorId(long id)
+        {
+            //return produtoDAL.EliminarProdutoPorId(id);
+            return fabricanteDAL.EliminarProdutoPorId(id);
+        }
 
 
     }

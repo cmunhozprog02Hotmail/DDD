@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
-using Apresentacao.Models;
 using Modelo.Tabelas;
 using Servico.Cadastros;
 
@@ -122,7 +115,7 @@ namespace Apresentacao.Controllers
                 TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida";
                 return RedirectToAction("Index");
             }
-            catch 
+            catch (System.Exception)
             {
 
                 throw;
