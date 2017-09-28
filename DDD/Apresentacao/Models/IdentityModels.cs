@@ -33,5 +33,7 @@ namespace Apresentacao.Models
         public System.Data.Entity.DbSet<Modelo.Tabelas.Categoria> Categorias { get; set; }
 
         public System.Data.Entity.DbSet<Modelo.Cadastros.Produto> Produtoes { get; set; }
+
+        public System.Data.Entity.DbSet<Modelo.Cadastros.Fabricante> Fabricantes { get; set; }
     }
 }

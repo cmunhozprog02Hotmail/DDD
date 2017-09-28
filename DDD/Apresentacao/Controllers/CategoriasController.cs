@@ -8,32 +8,60 @@ using System.Web;
 using System.Web.Mvc;
 using Apresentacao.Models;
 using Modelo.Tabelas;
+using Servico.Cadastros;
 
 namespace Apresentacao.Controllers
 {
     public class CategoriasController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        private CategoriaServico categoriaServico = new CategoriaServico();
 
-        // GET: Categorias
-        public ActionResult Index()
-        {
-            return View(db.Categorias.ToList());
-        }
-
-        // GET: Categorias/Details/5
-        public ActionResult Details(long? id)
+        // Para delete edit e details
+        private ActionResult ObterVisaoCategoriaPorId(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categorias.Find(id);
+
+            Categoria categoria = categoriaServico.ObterCategoriaPorId((long) id);
             if (categoria == null)
             {
                 return HttpNotFound();
             }
             return View(categoria);
+        }
+
+        // HTTP Salvar
+        private ActionResult GravarCategoria(Categoria categoria)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    categoriaServico.GravarCategoria(categoria);
+                    return RedirectToAction("Index");
+                }
+                return View(categoria);
+            }
+            catch
+            {
+                return View(categoria);
+            }
+        }
+
+        // GET: Categorias
+        public ActionResult Index()
+        {
+            return View(categoriaServico.ObterCategoriasClassificadasPorNome());
+        }
+
+        // GET: Categorias/Details/5
+        public ActionResult Details(long? id)
+        {
+            
+            return ObterVisaoCategoriaPorId(id);
         }
 
         // GET: Categorias/Create
@@ -51,27 +79,16 @@ namespace Apresentacao.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categorias.Add(categoria);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return GravarCategoria(categoria);
             }
-
             return View(categoria);
         }
 
         // GET: Categorias/Edit/5
         public ActionResult Edit(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categoria);
+            categoriaServico.ObterCategoriaPorId((long)id);
+            return ObterVisaoCategoriaPorId(id);
         }
 
         // POST: Categorias/Edit/5
@@ -83,9 +100,7 @@ namespace Apresentacao.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categoria).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return GravarCategoria(categoria);
             }
             return View(categoria);
         }
@@ -93,34 +108,32 @@ namespace Apresentacao.Controllers
         // GET: Categorias/Delete/5
         public ActionResult Delete(long? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Categoria categoria = db.Categorias.Find(id);
-            if (categoria == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categoria);
+            return ObterVisaoCategoriaPorId(id);
         }
 
         // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public ActionResult Delete(long id)
         {
-            Categoria categoria = db.Categorias.Find(id);
-            db.Categorias.Remove(categoria);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Categoria categoria = categoriaServico.EliminarCategoriaPorId(id);
+                TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida";
+                return RedirectToAction("Index");
+            }
+            catch 
+            {
+
+                throw;
+            }
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

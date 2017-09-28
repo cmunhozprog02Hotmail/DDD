@@ -16,9 +16,7 @@ namespace Presistencia.DAL.Cadastros
 
         public Categoria ObterCategoriaPorId(long id)
         {
-            
             return context.Categorias.Where(c => c.CategoriaId == id).First();
-
         }
 
         public void GravarCategoria(Categoria categoria)
