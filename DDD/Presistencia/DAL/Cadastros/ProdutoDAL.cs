@@ -11,7 +11,8 @@ namespace Presistencia.DAL.Cadastros
 
         public IQueryable ObterProdutosClassificadosPorNome()
         {
-            return context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).OrderBy(n => n.Nome);
+            return context.Produtos.Include(c => c.Categoria).
+                Include(f => f.Fabricante).OrderBy(n => n.Nome);
         }
 
         public Produto ObterProdutoPorId(long id)

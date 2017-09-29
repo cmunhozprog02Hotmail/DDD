@@ -6,25 +6,25 @@ namespace Servico.Cadastros
 {
     public class CategoriaServico
     {
-        private CategoriaDAL CategoriaDAL = new CategoriaDAL();
+        private CategoriaDAL categoriaDAL = new CategoriaDAL();
 
         public IQueryable<Categoria> ObterCategoriasClassificadasPorNome()
         {
-            return CategoriaDAL.ObterCategoriasClassificadasPorNome();
+            return categoriaDAL.ObterCategoriasClassificadasPorNome();
         }
         public Categoria ObterCategoriaPorId(long id)
         {
-            return CategoriaDAL.ObterCategoriaPorId(id);
+            return categoriaDAL.ObterCategoriaPorId(id);
         }
 
         public void GravarCategoria(Categoria categoria)
         {
-            CategoriaDAL.GravarCategoria(categoria);
+            categoriaDAL.GravarCategoria(categoria);
         }
 
         public Categoria EliminarCategoriaPorId(long id)
         {
-            return CategoriaDAL.EliminarCategoriaPorId(id);
+            return categoriaDAL.EliminarCategoriaPorId(id);
         }
     }
 }

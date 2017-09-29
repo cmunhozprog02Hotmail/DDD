@@ -5,7 +5,7 @@ using Servico.Cadastros;
 
 namespace Apresentacao.Controllers
 {
-    public class ProdutosController : Controller
+    public class Produtos2Controller : Controller
     {
         private ProdutoServico produtoServico = new ProdutoServico();
         private CategoriaServico categoriaServico = new CategoriaServico();
@@ -67,6 +67,7 @@ namespace Apresentacao.Controllers
         // GET: Produtoes
         public ActionResult Index()
         {
+            
             return View(produtoServico.ObterProdutosClassificadosPorNome());
         }
 
@@ -90,12 +91,11 @@ namespace Apresentacao.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProdutoId,Nome,Descricao")] Produto produto)
         {
-            if (ModelState.IsValid)
-            {
+            
                 return GravarProduto(produto);
-            }
+           
 
-            return View(produto);
+            
         }
 
         // GET: Produtoes/Edit/5

@@ -1,7 +1,8 @@
 ﻿using Modelo.Tabelas;
 using Presistencia.Contexts;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
+
 
 namespace Presistencia.DAL.Cadastros
 {

@@ -20,5 +20,7 @@ namespace Modelo.Tabelas
         public string Teste02 { get; set; }
 
         public virtual ICollection<Produto> Produto { get; set; }
+
+        public virtual ICollection<SubCategoria> SubCategoria { get; set; }
     }
 }

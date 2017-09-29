@@ -200,12 +200,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Categorias1Controller.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\FabricantesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProdutoesController.cs" />
-    <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\Produtos2Controller.cs" />
+    <Compile Include="Controllers\SubCategoriasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -287,11 +289,21 @@
     <Content Include="Views\Fabricantes\Details.cshtml" />
     <Content Include="Views\Fabricantes\Edit.cshtml" />
     <Content Include="Views\Fabricantes\Index.cshtml" />
-    <Content Include="Views\Produtos\Create.cshtml" />
-    <Content Include="Views\Produtos\Delete.cshtml" />
-    <Content Include="Views\Produtos\Details.cshtml" />
-    <Content Include="Views\Produtos\Edit.cshtml" />
-    <Content Include="Views\Produtos\Index.cshtml" />
+    <Content Include="Views\Categorias1\Create.cshtml" />
+    <Content Include="Views\Categorias1\Delete.cshtml" />
+    <Content Include="Views\Categorias1\Details.cshtml" />
+    <Content Include="Views\Categorias1\Edit.cshtml" />
+    <Content Include="Views\Categorias1\Index.cshtml" />
+    <Content Include="Views\SubCategorias\Create.cshtml" />
+    <Content Include="Views\SubCategorias\Delete.cshtml" />
+    <Content Include="Views\SubCategorias\Details.cshtml" />
+    <Content Include="Views\SubCategorias\Edit.cshtml" />
+    <Content Include="Views\SubCategorias\Index.cshtml" />
+    <Content Include="Views\Produtos2\Create.cshtml" />
+    <Content Include="Views\Produtos2\Delete.cshtml" />
+    <Content Include="Views\Produtos2\Details.cshtml" />
+    <Content Include="Views\Produtos2\Edit.cshtml" />
+    <Content Include="Views\Produtos2\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
