@@ -205,6 +205,7 @@
     <Compile Include="Controllers\FabricantesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Produto3Controller.cs" />
     <Compile Include="Controllers\ProdutoesController.cs" />
     <Compile Include="Controllers\Produtos2Controller.cs" />
     <Compile Include="Controllers\SubCategoriasController.cs" />
@@ -304,6 +305,11 @@
     <Content Include="Views\Produtos2\Details.cshtml" />
     <Content Include="Views\Produtos2\Edit.cshtml" />
     <Content Include="Views\Produtos2\Index.cshtml" />
+    <Content Include="Views\Produto3\Create.cshtml" />
+    <Content Include="Views\Produto3\Delete.cshtml" />
+    <Content Include="Views\Produto3\Details.cshtml" />
+    <Content Include="Views\Produto3\Edit.cshtml" />
+    <Content Include="Views\Produto3\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
